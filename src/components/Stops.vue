@@ -3,7 +3,8 @@
 import axios from 'axios'
 export default {
     props: {
-        routeNumber: Number
+        routeNumber: Number,
+        globalCanvas: Object
         // : Number,
         // : Number,
         // : Number,
@@ -70,9 +71,16 @@ export default {
                 var sourceRange = sourceRangeMax - sourceRangeMin;
                 return (value - sourceRangeMin) * targetRange / sourceRange + targetRangeMin;
         },
+        display: function(){
+        const canvas = this.globalCanvas;
+        const ctx = canvas.getContext("2d");
+        ctx.fillStyle = "green";
+        this.allStops.forEach(element => {
+        ctx.fillRect(element.xPos,element.yPos,3,3)})
+        },
     },
-    created() {
 
+    created(){
     },
     mounted(){
         this.getAllStops()
@@ -89,13 +97,8 @@ export default {
                 })
             })
         .then(() => {
-        const canvas = document.getElementById("allStops");
-        const ctx = canvas.getContext("2d");
-        ctx.fillStyle = "green";
-        this.allStops.forEach(element => {
-            ctx.fillRect(element.xPos,element.yPos,3,3)
+            this.display();
         })
-    })
     }
 }
 </script>

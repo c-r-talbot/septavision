@@ -30,7 +30,7 @@ export default {
                     else { this.lastUpdatedHours = d.getHours() % 12 }
                 this.lastUpdatedMinutes = d.getMinutes();
                 this.lastUpdatedSeconds = d.getSeconds();
-                console.log(this.lastUpdated)
+                // console.log(this.lastUpdated)
             } catch (e)  {
                 console.log(e)
             }
